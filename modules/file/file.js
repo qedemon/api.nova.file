@@ -7,10 +7,12 @@ const app = express();
 const {useRedisConnection, ...redis} = require("./redis");
 const {responseData, responseError} = require("modules/serverUtility");
 const FileErrors = require("./FileErrors");
+const {middleware: authorization} = require("modules/authorize");
 
 const getChunkSize = ()=>(1<<20);//1Mbyte
 
 app.post("/createFile", express.json());
+app.post("/createFile", authorization);
 app.post("/createFile", async (req, res)=>{
     const conn = await useRedisConnection();
     const key = uuid.v4();
