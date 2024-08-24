@@ -9,7 +9,7 @@ const {responseData, responseError} = require("modules/serverUtility");
 const FileErrors = require("./FileErrors");
 const {middleware: authorization} = require("modules/authorize");
 
-const getChunkSize = ()=>(1<<20);//1Mbyte
+const getChunkSize = ()=>(1<<19);//0.5Mbyte
 
 app.post("/createFile", express.json());
 app.post("/createFile", authorization);
